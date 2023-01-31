@@ -99,7 +99,9 @@ public class MapInfoWindowFragment extends Fragment {
     @Override
     public void onSaveInstanceState(Bundle outState) {
         super.onSaveInstanceState(outState);
-        infoWindowManager.onSaveInstanceState(outState);
+        if(infoWindowManager != null) {
+            infoWindowManager.onSaveInstanceState(outState);
+        }
     }
 
     @Override

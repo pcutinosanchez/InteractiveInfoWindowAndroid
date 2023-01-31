@@ -13,8 +13,8 @@
  */
 
 apply plugin: 'com.android.library'
-apply plugin: 'maven-publish'
-apply plugin: 'signing'
+//apply plugin: 'maven-publish'
+//apply plugin: 'signing'
 
 apply from: 'versioning.gradle'
 
@@ -39,41 +39,45 @@ android {
     }
 }
 
+task prepareKotlinBuildScriptModel {
+
+}
+
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation "androidx.appcompat:appcompat:1.3.0"
     implementation 'com.google.android.gms:play-services-maps:17.0.1'
 }
 
-afterEvaluate {
-    publishing {
-        publications {
-            aar(MavenPublication) {
-                from components.release
-                artifactId = 'interactive-info-window-android'
-                groupId = "com.appolica"
-                version = getVersionName()
-            }
-        }
-    }
-}
+//afterEvaluate {
+//    publishing {
+//        publications {
+//            aar(MavenPublication) {
+//                from components.release
+//                artifactId = 'interactive-info-window-android'
+//                groupId = "com.appolica"
+//                version = getVersionName()
+//            }
+//        }
+//    }
+//}
 
-publishing {
-    repositories {
-        maven {
-            url = 'https://s01.oss.sonatype.org/content/repositories/releases/'
-//            url = 'https://s01.oss.sonatype.org/content/repositories/snapshots/'   // Repository for snapshot versions of library.
-            credentials {
-                username = ossrhUsername
-                password = ossrhPassword
-            }
-        }
-    }
-}
+//publishing {
+//    repositories {
+//        maven {
+//            url = 'https://s01.oss.sonatype.org/content/repositories/releases/'
+////            url = 'https://s01.oss.sonatype.org/content/repositories/snapshots/'   // Repository for snapshot versions of library.
+//            credentials {
+//                username = ossrhUsername
+//                password = ossrhPassword
+//            }
+//        }
+//    }
+//}
 
-signing {
-    def signingKeyId = findProperty("signing.keyId")
-    def signingPassword = findProperty("signing.password")
-    def signingKey = findProperty("signing.secretKeyRingFile")
-    useInMemoryPgpKeys(signingKeyId, signingKey, signingPassword)
-}
+//signing {
+//    def signingKeyId = findProperty("signing.keyId")
+//    def signingPassword = findProperty("signing.password")
+//    def signingKey = findProperty("signing.secretKeyRingFile")
+//    useInMemoryPgpKeys(signingKeyId, signingKey, signingPassword)
+//}
